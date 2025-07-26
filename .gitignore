@@ -1,0 +1,16 @@
+# Build folders
+bin/
+obj/
+
+# User-specific files
+*.user
+*.suo
+
+# Rider / VS Code
+.idea/
+.vscode/
+
+# Logs and temp files
+*.log
+*.tmp
+*.bak
