@@ -14,12 +14,12 @@ builder.Services.AddScoped<AuthService>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        var key = builder.Configuration["Jwt:Key"]!;
+        var key = Environment.GetEnvironmentVariable("jwtKey") ?? builder.Configuration["Jwt:Key"]!;
         options.TokenValidationParameters = new TokenValidationParameters
         {
             ValidateIssuer = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            ValidateAudience = true,
+            ValidateAudience = false,
             ValidAudience = builder.Configuration["Jwt:Audience"],
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
@@ -27,7 +27,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 
-builder.Services.AddDbContext<AppDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+var dbPassword = Environment.GetEnvironmentVariable("DbPassword");
+
+var connectionString = $"Host=localhost;Port=5432;Database=LojaOnlineDb;Username=postgres;Password={dbPassword}";
+
+builder.Services.AddDbContext<AppDbContext>(options => 
+    options.UseNpgsql(connectionString));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

@@ -8,7 +8,9 @@
       "launchUrl": "swagger",
       "applicationUrl": "http://localhost:5063",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DbPassword": "root",
+        "jwtKey": "20112006dev00postgress-400dkska-!ksksk3212-e1jjdjac7392qdqdq"
       }
     },
     "https": {
@@ -18,7 +20,9 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7290;http://localhost:5063",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DbPassword": "root",
+        "jwtKey": "20112006dev00postgress-400dkska-!ksksk3212-e1jjdjac7392qdqdq"
       }
     }
   }
